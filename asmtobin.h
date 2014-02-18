@@ -18,6 +18,8 @@ private:
     char type;
 
     void asmToBin();
+
+    void move();
 };
 
 #endif // ASMTOBIN_H
