@@ -56,6 +56,9 @@ void AsmToBin::move()
         binText += "\n1010";
         if (type == 1)
             binText +="0001";
+        else
+            if (type == 0)
+                binText +="0000";
         char size = qslBufZPT.last().count()-1;
         QString nakop="";
         QChar buf;
@@ -68,8 +71,8 @@ void AsmToBin::move()
                 if (i != size-1)
                     throw QString("Не верно казан адресс памяти у MOVE");
         }
-//                size = nakop.size();
-        for (char i = 2; i < 4; ++i)
+                size = nakop.size();
+        for (char i = 2; i < size; ++i)
         {
             if (nakop[i] == '0')
                 binText+="0000";
@@ -178,6 +181,9 @@ void AsmToBin::move()
             binText += "\n1010";
             if (type == 1)
                 binText +="0011";
+            else
+                if (type == 0)
+                    binText+="0010";
             char size = qslBufZPT.last().count()-1;
             QString nakop="";
             QChar buf;
@@ -190,8 +196,8 @@ void AsmToBin::move()
                     if (i != size-1)
                         throw QString("Не верно казан адресс памяти у MOVE");
             }
-    //                size = nakop.size();
-            for (char i = 2; i < 4; ++i)
+                    size = nakop.size();
+            for (char i = 2; i < size; ++i)
             {
                 if (nakop[i] == '0')
                     binText+="0000";
