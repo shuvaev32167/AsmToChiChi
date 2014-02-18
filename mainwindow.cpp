@@ -26,7 +26,7 @@ void MainWindow::on_pushButton_clicked()
     ui->textBrowser_2->clear();
     try
     {
-        AsmToBin asmToBin(ui->textEdit->toPlainText());
+        AsmToBin asmToBin(ui->textEdit->toPlainText(),1);
     }
     catch (QString str)
     {
