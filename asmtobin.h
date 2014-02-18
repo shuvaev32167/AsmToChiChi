@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QDebug>
+#include <QMap>
 
 class AsmToBin
 {
@@ -15,11 +16,14 @@ private:
     QString asmText;
     QString binText;
 
+    QMap<QString, QString> registers;
+
     char type;
 
     void asmToBin();
 
-    void move();
+    void move(QStringList qslBufSpace, QStringList qslBufZPT);
+    void sub(QStringList qslBufSpace, QStringList qslBufZPT);
 };
 
 #endif // ASMTOBIN_H
