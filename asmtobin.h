@@ -22,8 +22,8 @@ private:
 
     void asmToBin();
 
-    void move(QStringList qslBufSpace, QStringList qslBufZPT);
-    void sub(QStringList qslBufSpace, QStringList qslBufZPT);
+    void move(QStringList qslBufZPT);
+    void sub(QStringList qslBufZPT);
 };
 
 #endif // ASMTOBIN_H

@@ -2,6 +2,9 @@
 
 AsmToBin::AsmToBin(QString str, char type)
 {
+    /*if (registers.contains("AX"))
+        qDebug() << "yes";*/
+    asmText = str;
     if (type == 1)
     {
         registers.insert("AX","000");
@@ -43,9 +46,6 @@ AsmToBin::AsmToBin(QString str, char type)
             registers.insert("dh","110");
             registers.insert("bh","111");
         }
-    /*if (registers.contains("AX"))
-        qDebug() << "yes";*/
-    asmText = str;
     this->type = type;
     asmToBin();
 }
@@ -77,10 +77,16 @@ void AsmToBin::asmToBin()
                 continue;
             }
         if (qslBufSpace.first() == "MOVE" || qslBufSpace.first() == "move")
-            move(qslBufSpace,qslBufZPT);
+        {
+            move(qslBufZPT);
+            continue;
+        }
         else
             if (qslBufSpace.first() == "SUB" || qslBufSpace.first() == "sub")
-                sub(qslBufSpace,qslBufZPT);
+            {
+                sub(qslBufZPT);
+                continue;
+            }
         binText.remove(0,1);
 //        qDebug() << binText;
 //        qDebug() << binText.toLongLong(0,2);
@@ -88,7 +94,7 @@ void AsmToBin::asmToBin()
     }
 }
 
-void AsmToBin::move(QStringList qslBufSpace, QStringList qslBufZPT)
+void AsmToBin::move(QStringList qslBufZPT)
 {
     if (qslBufZPT.empty()|| qslBufZPT.first() == "")
         throw QString("MOVE без данных");
@@ -346,7 +352,7 @@ void AsmToBin::move(QStringList qslBufSpace, QStringList qslBufZPT)
     }
 }
 
-void AsmToBin::sub(QStringList qslBufSpace, QStringList qslBufZPT)
+void AsmToBin::sub(QStringList qslBufZPT)
 {
     if (qslBufZPT.empty()|| qslBufZPT.first() == "")
         throw QString("SUB без данных");
