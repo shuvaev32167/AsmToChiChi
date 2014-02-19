@@ -421,10 +421,10 @@ void AsmToBin::add(QStringList qslBufZPT)
             else
                 if (type == 0)
                     binText+="0";
-            char size = qslBufZPT.last().count()-1;
+            char size = qslBufZPT.last().count();
             QString nakop="";
             QChar buf;
-            for (char i = 1; i < size; ++i)
+            for (char i = 0; i < size; ++i)
             {
                 buf = qslBufZPT.last()[i];
                 if (buf != 'H' || buf !='h')
