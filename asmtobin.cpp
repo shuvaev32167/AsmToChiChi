@@ -251,12 +251,12 @@ void AsmToBin::move(QStringList qslBufZPT)
             else
                 if (type == 0)
                     binText+="0010";
-            char size = qslBufZPT.last().count()-1;
+            char size = qslBufZPT.first().count()-1;
             QString nakop="";
             QChar buf;
             for (char i = 1; i < size; ++i)
             {
-                buf = qslBufZPT.last()[i];
+                buf = qslBufZPT.first()[i];
                 if (buf != 'H' || buf !='h')
                     nakop += buf;
                 else
@@ -397,7 +397,7 @@ void AsmToBin::add(QStringList qslBufZPT)
     else
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
             throw QString("Не верное число параметров у ADD");
-    if (qslBufZPT.size() == 2)
+    if (qslBufZPT.last().size() == 2)
     {
         binText+="\n0000001";
         if (type == 1)
@@ -410,10 +410,10 @@ void AsmToBin::add(QStringList qslBufZPT)
             binText+=registers[qslBufZPT.first()] + registers[qslBufZPT.last()];
         }
         else
-            throw QString("Данные параметры у SUB не обрабатываются (пока?)");
+            throw QString("Данные параметры у add не обрабатываются (пока?)");
     }
     else
-        if (qslBufZPT.size() == 5)
+        if (qslBufZPT.last().size() == 5)
         {
             binText+="\n0000010";
             if (type == 1)
