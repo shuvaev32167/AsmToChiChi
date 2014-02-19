@@ -98,13 +98,13 @@ void AsmToBin::asmToBin()
                         throw QString("Данна команда не обрабатывается (пока?)");
     }
     binText.remove(0,1);
-    qDebug() << binText;
-    for (int i =0; i < binText.split('\n').size(); ++i)
-    {
-        qDebug() << asmText.split('\n')[i];
-        qDebug() << binText.split('\n')[i].toLongLong(0,2);
-        qDebug () << QString::number(binText.split('\n')[i].toLongLong(0,2),16);
-    }
+//    qDebug() << binText;
+//    for (int i =0; i < binText.split('\n').size(); ++i)
+//    {
+//        qDebug() << asmText.split('\n')[i];
+//        qDebug() << binText.split('\n')[i].toLongLong(0,2);
+//        qDebug () << QString::number(binText.split('\n')[i].toLongLong(0,2),16);
+//    }
 //    qDebug() << binText.split('\n').first().toLongLong(0,2);
 //    qDebug () << QString::number(binText.split('\n').first().toLongLong(0,2),16);
 //    qDebug() << binText.split('\n').last().toLongLong(0,2);

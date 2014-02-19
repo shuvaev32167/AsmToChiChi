@@ -29,6 +29,8 @@ private:
     Ui::MainWindow *ui;
 
     QString text;
+
+    QString convertBinToHex(QString binText);
 };
 
 #endif // MAINWINDOW_H
