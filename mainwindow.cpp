@@ -16,34 +16,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    ui->textEdit->clear();
-    ui->textBrowser->clear();
-    ui->textBrowser_2->clear();
+    ui->textEditAsm->clear();
+    ui->textBrowserBin->clear();
+    ui->textBrowserHex->clear();
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-    ui->textBrowser->clear();
-    ui->textBrowser_2->clear();
+    ui->textBrowserBin->clear();
+    ui->textBrowserHex->clear();
     char type;
-    if (ui->radioButton->isChecked())
+    if (ui->radioButtonByte->isChecked())
         type = 0;
     else
-        if (ui->radioButton_2->isChecked())
+        if (ui->radioButtonWord->isChecked())
             type = 1;
     AsmToBin *asmToBin;
     try
     {
-        asmToBin = new AsmToBin(ui->textEdit->toPlainText(),type);
+        asmToBin = new AsmToBin(ui->textEditAsm->toPlainText(),type);
         text = asmToBin->getBinText();
-        ui->textBrowser->setPlainText(text);
+        ui->textBrowserBin->setPlainText(text);
     }
     catch (QString str)
     {
         QMessageBox::warning(this, "Error", str);
     }
     text = convertBinToHex(text);
-    ui->textBrowser_2->setPlainText(text);
+    ui->textBrowserHex->setPlainText(text);
 //    QString *string = new QString(ui->textEdit->toPlainText());
     //    qDebug() << *string;
 }

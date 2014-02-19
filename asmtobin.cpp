@@ -98,17 +98,17 @@ void AsmToBin::asmToBin()
                         throw QString("Данна команда не обрабатывается (пока?)");
     }
     binText.remove(0,1);
-//    qDebug() << binText;
-//    for (int i =0; i < binText.split('\n').size(); ++i)
-//    {
-//        qDebug() << asmText.split('\n')[i];
-//        qDebug() << binText.split('\n')[i].toLongLong(0,2);
-//        qDebug () << QString::number(binText.split('\n')[i].toLongLong(0,2),16);
-//    }
-//    qDebug() << binText.split('\n').first().toLongLong(0,2);
-//    qDebug () << QString::number(binText.split('\n').first().toLongLong(0,2),16);
-//    qDebug() << binText.split('\n').last().toLongLong(0,2);
-//    qDebug () << QString::number(binText.split('\n').last().toLongLong(0,2),16);
+    //    qDebug() << binText;
+    //    for (int i =0; i < binText.split('\n').size(); ++i)
+    //    {
+    //        qDebug() << asmText.split('\n')[i];
+    //        qDebug() << binText.split('\n')[i].toLongLong(0,2);
+    //        qDebug () << QString::number(binText.split('\n')[i].toLongLong(0,2),16);
+    //    }
+    //    qDebug() << binText.split('\n').first().toLongLong(0,2);
+    //    qDebug () << QString::number(binText.split('\n').first().toLongLong(0,2),16);
+    //    qDebug() << binText.split('\n').last().toLongLong(0,2);
+    //    qDebug () << QString::number(binText.split('\n').last().toLongLong(0,2),16);
 }
 
 void AsmToBin::move(QStringList qslBufZPT)
@@ -138,7 +138,7 @@ void AsmToBin::move(QStringList qslBufZPT)
                 if (i != size-1)
                     throw QString("Не верно казан адресс памяти у MOVE");
         }
-                size = nakop.size();
+        size = nakop.size();
         for (char i = 2; i < size; ++i)
         {
             if (nakop[i] == '0')
@@ -239,7 +239,7 @@ void AsmToBin::move(QStringList qslBufZPT)
                                                                         if (nakop[i] == 'F')
                                                                             binText+="1111";
         }
-//                binText += QString::number(nakop.toInt(0,16),2);
+        //                binText += QString::number(nakop.toInt(0,16),2);
     }
     else
     {
@@ -263,7 +263,7 @@ void AsmToBin::move(QStringList qslBufZPT)
                     if (i != size-1)
                         throw QString("Не верно казан адресс памяти у MOVE");
             }
-                    size = nakop.size();
+            size = nakop.size();
             for (char i = 2; i < size; ++i)
             {
                 if (nakop[i] == '0')
@@ -364,7 +364,7 @@ void AsmToBin::move(QStringList qslBufZPT)
                                                                             if (nakop[i] == 'F')
                                                                                 binText+="1111";
             }
-    //                binText += QString::number(nakop.toInt(0,16),2);
+            //                binText += QString::number(nakop.toInt(0,16),2);
         }
     }
 }
@@ -433,7 +433,7 @@ void AsmToBin::add(QStringList qslBufZPT)
                     if (i != size-1)
                         throw QString("Не верно казан адресс памяти у MOVE");
             }
-                    size = nakop.size();
+            size = nakop.size();
             for (char i = 2; i < size; ++i)
             {
                 if (nakop[i] == '0')
