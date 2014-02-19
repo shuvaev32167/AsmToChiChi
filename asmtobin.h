@@ -24,6 +24,7 @@ private:
 
     void move(QStringList qslBufZPT);
     void sub(QStringList qslBufZPT);
+    void add(QStringList qslBufZPT);
 };
 
 #endif // ASMTOBIN_H

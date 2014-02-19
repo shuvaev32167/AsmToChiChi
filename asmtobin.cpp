@@ -87,6 +87,15 @@ void AsmToBin::asmToBin()
                 sub(qslBufZPT);
                 continue;
             }
+            else
+                if (qslBufSpace.first() == "ADD" || qslBufSpace.first() == "add")
+                {
+                    add(qslBufZPT);
+                    continue;
+                }
+                else
+                    if (qslBufSpace.first() != "" && qslBufSpace.size() != 2)
+                        throw QString("Данна команда не обрабатывается (пока?)");
     }
     binText.remove(0,1);
     qDebug() << binText;
@@ -373,4 +382,13 @@ void AsmToBin::sub(QStringList qslBufZPT)
     }
     else
         throw QString("Данные параметры у SUB не обрабатываются (пока?)");
+}
+
+void AsmToBin::add(QStringList qslBufZPT)
+{
+    if (qslBufZPT.empty()|| qslBufZPT.first() == "")
+        throw QString("ADD без данных");
+    else
+        if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
+            throw QString("Не верное число параметров у ADD");
 }
