@@ -87,11 +87,13 @@ void AsmToBin::asmToBin()
                 sub(qslBufZPT);
                 continue;
             }
-        binText.remove(0,1);
-//        qDebug() << binText;
-//        qDebug() << binText.toLongLong(0,2);
-//        qDebug () << QString::number(binText.toLongLong(0,2),16);
     }
+    binText.remove(0,1);
+    qDebug() << binText;
+    qDebug() << binText.split('\n').first().toLongLong(0,2);
+    qDebug () << QString::number(binText.split('\n').first().toLongLong(0,2),16);
+    qDebug() << binText.split('\n').last().toLongLong(0,2);
+    qDebug () << QString::number(binText.split('\n').last().toLongLong(0,2),16);
 }
 
 void AsmToBin::move(QStringList qslBufZPT)
@@ -359,4 +361,16 @@ void AsmToBin::sub(QStringList qslBufZPT)
     else
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
             throw QString("Не верное число параметров у SUB");
+    binText += "\n0010101";
+    if (type == 1)
+        binText += "111";
+    else
+        if (type == 0)
+            binText += "011";
+    if (registers.contains(qslBufZPT.first()) && registers.contains(qslBufZPT.last()))
+    {
+        binText+=registers[qslBufZPT.first()] + registers[qslBufZPT.last()];
+    }
+    else
+        throw QString("Данные параметры у SUB не обрабатываются (пока?)");
 }
