@@ -366,6 +366,17 @@ void AsmToBin::move(QStringList qslBufZPT)
             }
             //                binText += QString::number(nakop.toInt(0,16),2);
         }
+        else
+            if (registers.contains(qslBufZPT.first()) && registers.contains(qslBufZPT.last()))
+            {
+                binText+="\n1000101";
+                if (type == 1)
+                    binText+="111";
+                else
+                    if (type == 0)
+                        binText+="011";
+                binText+=registers[qslBufZPT.first()] + registers[qslBufZPT.last()];
+            }
     }
 }
 

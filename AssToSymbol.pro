@@ -20,3 +20,6 @@ HEADERS  += mainwindow.h \
     asmtobin.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    tr.qrc

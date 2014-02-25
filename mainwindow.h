@@ -5,6 +5,8 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <QMessageBox>
+#include <QDialogButtonBox>
+#include <QDesktopServices>
 
 #include "asmtobin.h"
 
@@ -21,9 +23,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_pushButtonClear_clicked();
 
-    void on_pushButton_clicked();
+    void on_pushButtonStart_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -31,6 +33,9 @@ private:
     QString text;
 
     QString convertBinToHex(QString binText);
+
+protected:
+    virtual bool eventFilter(QObject *object, QEvent *event);
 };
 
 #endif // MAINWINDOW_H
