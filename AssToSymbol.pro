@@ -14,14 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    asmtobin.cpp \
-    BinToHex.cpp
+    BinToHex.cpp \
+    AsmToBin.cpp
 
 HEADERS  += mainwindow.h \
-    asmtobin.h \
-    BinToHex.h
+    BinToHex.h \
+    AsmToBin.h
 
 FORMS    += mainwindow.ui
 
 RESOURCES += \
     tr.qrc
+
+QMAKE_CXXFLAGS += -std=c++0x
