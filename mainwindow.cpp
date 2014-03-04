@@ -35,10 +35,10 @@ void MainWindow::on_pushButtonStart_clicked()
     ui->textEditHex->clear();
     char type;
     if (ui->radioButtonByte->isChecked())
-        type = 0;
+        type = Type::byte;
     else
         if (ui->radioButtonWord->isChecked())
-            type = 1;
+            type = Type::word;
     AsmToBin *asmToBin;
     try
     {

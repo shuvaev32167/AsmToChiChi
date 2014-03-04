@@ -8,7 +8,7 @@
 #include <QDialogButtonBox>
 #include <QDesktopServices>
 
-#include "asmtobin.h"
+#include "AsmToBin.h"
 
 namespace Ui {
 class MainWindow;

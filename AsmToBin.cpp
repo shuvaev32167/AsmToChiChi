@@ -1,11 +1,11 @@
-#include "asmtobin.h"
+#include "AsmToBin.h"
 
 AsmToBin::AsmToBin(QString str, char type)
 {
     /*if (registers.contains("AX"))
         qDebug() << "yes";*/
     asmText = str;
-    if (type == 1)
+    if (type == Type::word)
     {
         registers.insert("AX","000");
         registers.insert("CX","001");
@@ -26,7 +26,7 @@ AsmToBin::AsmToBin(QString str, char type)
         registers.insert("di","111");
     }
     else
-        if (type == 0)
+        if (type == Type::byte)
         {
             registers.insert("AL","000");
             registers.insert("CL","001");
@@ -429,10 +429,10 @@ void AsmToBin::add(QStringList qslBufZPT)
         if (qslBufZPT.last().size() == 5)
         {
             binText+="\n0000010";
-            if (type == 1)
+            if (type == Type::word)
                 binText+="1";
             else
-                if (type == 0)
+                if (type == Type::byte)
                     binText+="0";
             char size = qslBufZPT.last().count();
             QString nakop="";
