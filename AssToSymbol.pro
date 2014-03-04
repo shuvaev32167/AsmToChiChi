@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    asmtobin.cpp
+    asmtobin.cpp \
+    BinToHex.cpp
 
 HEADERS  += mainwindow.h \
-    asmtobin.h
+    asmtobin.h \
+    BinToHex.h
 
 FORMS    += mainwindow.ui
 
