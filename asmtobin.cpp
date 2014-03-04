@@ -121,10 +121,10 @@ void AsmToBin::move(QStringList qslBufZPT)
     if (qslBufZPT.last()[0] == '[' && (qslBufZPT.first() == "AX" || qslBufZPT.first() == "ax"))
     {
         binText += "\n1010";
-        if (type == 1)
+        if (type == Type::word)
             binText +="0001";
         else
-            if (type == 0)
+            if (type == Type::byte)
                 binText +="0000";
         char size = qslBufZPT.last().count()-1;
         QString nakop="";
@@ -246,10 +246,10 @@ void AsmToBin::move(QStringList qslBufZPT)
         if (qslBufZPT.first()[0] == '[' && (qslBufZPT.last() == "AX" || qslBufZPT.last() == "ax"))
         {
             binText += "\n1010";
-            if (type == 1)
+            if (type == Type::word)
                 binText +="0011";
             else
-                if (type == 0)
+                if (type == Type::byte)
                     binText+="0010";
             char size = qslBufZPT.first().count()-1;
             QString nakop="";
@@ -370,13 +370,15 @@ void AsmToBin::move(QStringList qslBufZPT)
             if (registers.contains(qslBufZPT.first()) && registers.contains(qslBufZPT.last()))
             {
                 binText+="\n1000101";
-                if (type == 1)
+                if (type == Type::word)
                     binText+="111";
                 else
-                    if (type == 0)
+                    if (type == Type::byte)
                         binText+="011";
                 binText+=registers[qslBufZPT.first()] + registers[qslBufZPT.last()];
             }
+            else
+                throw QString("Данные параметры у MOV не обрабатываются (пока?)");
     }
 }
 
@@ -388,10 +390,10 @@ void AsmToBin::sub(QStringList qslBufZPT)
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
             throw QString("Не верное число параметров у SUB");
     binText += "\n0010101";
-    if (type == 1)
+    if (type == Type::word)
         binText += "111";
     else
-        if (type == 0)
+        if (type == Type::byte)
             binText += "011";
     if (registers.contains(qslBufZPT.first()) && registers.contains(qslBufZPT.last()))
     {
@@ -411,10 +413,10 @@ void AsmToBin::add(QStringList qslBufZPT)
     if (qslBufZPT.last().size() == 2)
     {
         binText+="\n0000001";
-        if (type == 1)
+        if (type == Type::word)
             binText+="111";
         else
-            if (type == 0)
+            if (type == Type::byte)
                 binText+="011";
         if (registers.contains(qslBufZPT.first()) && registers.contains(qslBufZPT.last()))
         {
@@ -546,4 +548,6 @@ void AsmToBin::add(QStringList qslBufZPT)
                                                                                 binText+="1111";
             }
         }
+        else
+            throw QString("Данные параметры у add не обрабатываются (пока?)");
 }

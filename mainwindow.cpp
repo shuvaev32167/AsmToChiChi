@@ -8,13 +8,13 @@ MainWindow::MainWindow(QWidget *parent) :
     text = "";
     ui->setupUi(this);
 
-    this->installEventFilter(this);
+//    this->installEventFilter(this);
 
-#ifdef __WIN32__ || __WIN64__
-    QMessageBox::information(this,"Великое сообщение!",
-                             "Братья и сёстры.\nВо имя уничтожения империи грифона:\n\"Повеливаю перейти на сторону добра и света!\"");
-    QDesktopServices::openUrl(QUrl("http://gentoo.org"));
-#endif
+//#ifdef __WIN32__ || __WIN64__
+//    QMessageBox::information(this,"Великое сообщение!",
+//                             "Братья и сёстры.\nВо имя уничтожения империи грифона:\n\"Повеливаю перейти на сторону добра и света!\"");
+//    QDesktopServices::openUrl(QUrl("http://gentoo.org"));
+//#endif
 }
 
 MainWindow::~MainWindow()

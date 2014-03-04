@@ -25,6 +25,8 @@ private:
     void move(QStringList qslBufZPT);
     void sub(QStringList qslBufZPT);
     void add(QStringList qslBufZPT);
+
+    enum Type{byte = 0, word=1};
 };
 
 #endif // ASMTOBIN_H
