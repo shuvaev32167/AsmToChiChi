@@ -118,7 +118,8 @@ void AsmToBin::move(QStringList qslBufZPT)
     else
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
             throw QString("Не верное число параметров у MOV");
-    if (qslBufZPT.last()[0] == '[' && (qslBufZPT.first() == "AX" || qslBufZPT.first() == "ax"))
+    if (qslBufZPT.last()[0] == '[' && (qslBufZPT.first() == "AX" || qslBufZPT.first() == "ax" ||
+                                       qslBufZPT.first() == "AL" || qslBufZPT.first() == "al"))
     {
         binText += "\n1010";
         if (type == Type::word)
@@ -243,7 +244,8 @@ void AsmToBin::move(QStringList qslBufZPT)
     }
     else
     {
-        if (qslBufZPT.first()[0] == '[' && (qslBufZPT.last() == "AX" || qslBufZPT.last() == "ax"))
+        if (qslBufZPT.first()[0] == '[' && (qslBufZPT.last() == "AX" || qslBufZPT.first() == "ax" ||
+                                            qslBufZPT.first() == "AL" || qslBufZPT.first() == "al"))
         {
             binText += "\n1010";
             if (type == Type::word)
