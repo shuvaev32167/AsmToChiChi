@@ -10,13 +10,16 @@ class BinToHex
 {
 public:
     BinToHex(const QString &binText);
+    BinToHex(const int &value);
 
     QString getHexText();
+
+    void binToHex(const QString &binText);
 private:
     QString binText;
     QString hexText;
 
-    void binToHex();
+//    void binToHex(const QString &binText);
 };
 
 #endif // BINTOHEX_H

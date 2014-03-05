@@ -3,6 +3,15 @@
 BinToHex::BinToHex(const QString &binText)
 {
     this->binText = binText;
+
+//    binToHex();
+}
+
+BinToHex::BinToHex(const int &value)
+{
+    this->binText.number(value, 2);
+
+//    binToHex();
 }
 
 QString BinToHex::getHexText()
@@ -10,10 +19,10 @@ QString BinToHex::getHexText()
     return hexText;
 }
 
-void BinToHex::binToHex()
+void BinToHex::binToHex(const QString &binText)
 {
+    hexText = "";
     QStringList qls = binText.split('\n');
-//    int size = binText.size();
     QString buf;
     for (QString qs : qls)
     {
@@ -22,9 +31,8 @@ void BinToHex::binToHex()
         while (size != 0)
         {
             buf = "";
-            for (int i = size-5; i < size; ++i)
+            for (int i = size-4; i < size; ++i)
                 buf += qs[i];
-//            qs.remove(size-5,4);
             size -= 4;
             if (buf == "0000")
                 hexText += '0';

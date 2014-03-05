@@ -5,10 +5,12 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <QMessageBox>
-#include <QDialogButtonBox>
-#include <QDesktopServices>
+//#include <QDialogButtonBox>
+//#include <QDesktopServices>
 
 #include "AsmToBin.h"
+#include "BinToHex.h"
+#include <QTime>
 
 namespace Ui {
 class MainWindow;

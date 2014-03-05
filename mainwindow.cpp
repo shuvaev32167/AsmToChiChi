@@ -31,6 +31,11 @@ void MainWindow::on_pushButtonClear_clicked()
 
 void MainWindow::on_pushButtonStart_clicked()
 {
+    if (ui->textEditAsm->toPlainText() == "")
+    {
+        QMessageBox::information(this, "Нет данных", "Необходимо заполнить код на асме");
+        return;
+    }
     ui->textEditBin->clear();
     ui->textEditHex->clear();
     char type;
@@ -65,7 +70,7 @@ QString MainWindow::convertBinToHex(QString binText)
     {
         if (qslBinText[i] == "")
             continue;
-        bufHexText = QString::number(binText.split('\n')[i].toLongLong(0,2),16);
+        bufHexText = QString::number(qslBinText[i].toLongLong(0,2),16);
         if (bufHexText.size()%2 != 0)
             bufHexText="0"+bufHexText;
         hexText += "\n" + bufHexText;
