@@ -14,11 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    BinToHex.cpp \
     AsmToBin.cpp
 
 HEADERS  += mainwindow.h \
-    BinToHex.h \
     AsmToBin.h
 
 FORMS    += mainwindow.ui
