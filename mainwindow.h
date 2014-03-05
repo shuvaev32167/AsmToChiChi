@@ -29,6 +29,20 @@ private slots:
 
     void on_pushButtonStart_clicked();
 
+    void on_pushButtonToAsm_clicked();
+
+    void on_radioButtonWord_clicked();
+
+    void on_radioButtonByte_clicked();
+
+    void on_comboBoxAddrM_currentIndexChanged(int index);
+
+    void on_comboBoxAddrK_currentIndexChanged(int index);
+
+    void on_comboBoxAddrR_currentIndexChanged(int index);
+
+    void on_comboBoxAddrN_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
