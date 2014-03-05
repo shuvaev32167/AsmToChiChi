@@ -244,8 +244,8 @@ void AsmToBin::move(QStringList qslBufZPT)
     }
     else
     {
-        if (qslBufZPT.first()[0] == '[' && (qslBufZPT.last() == "AX" || qslBufZPT.first() == "ax" ||
-                                            qslBufZPT.first() == "AL" || qslBufZPT.first() == "al"))
+        if (qslBufZPT.first()[0] == '[' && (qslBufZPT.last() == "AX" || qslBufZPT.last() == "ax" ||
+                                            qslBufZPT.last() == "AL" || qslBufZPT.last() == "al"))
         {
             binText += "\n1010";
             if (type == Type::word)

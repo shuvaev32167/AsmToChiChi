@@ -36,6 +36,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBoxAddrK->setCurrentIndex(1);
     ui->lineEditAddrMemoryK->setText("0500");
 
+    ui->lineEditValueR->setText("-0010");
+    ui->comboBoxAddrR->setCurrentIndex(1);
+    ui->lineEditAddrMemoryR->setText("0502");
+
+    ui->lineEditValueN->setText("0030");
+    ui->comboBoxAddrN->setCurrentIndex(0);
+    ui->comboBoxRegistersN->setCurrentText("DX");
+
+    ui->lineEdit->setText("M=K+N-R+120");
+
 
 //    this->installEventFilter(this);
 
@@ -86,7 +96,7 @@ void MainWindow::on_pushButtonStart_clicked()
     }
     text = convertBinToHex(text);
     ui->textEditHex->setPlainText(text);
-//    QString *string = new QString(ui->textEdit->toPlainText());
+    //    QString *string = new QString(ui->textEdit->toPlainText());
     //    qDebug() << *string;
 }
 
@@ -119,10 +129,60 @@ bool MainWindow::eventFilter(QObject *object, QEvent *event)
 
 void MainWindow::on_pushButtonToAsm_clicked()
 {
+    QString asmText = "";
+    if (ui->comboBoxAddrK->currentIndex() == 0)
+        asmText += QString("MOV %1,%2H").arg(ui->comboBoxRegistersK->currentText())
+                .arg(ui->lineEditValueK->text()) + '\n';
+    else
+        if (ui->comboBoxAddrK->currentIndex() == 1)
+        {
+            asmText += QString("MOV %1,%2H").arg(ui->radioButtonWord->isChecked() ? "AX" : "AL")
+                    .arg(ui->lineEditValueK->text()) + '\n';
+            asmText += QString("MOV [%1H],%2").arg(ui->lineEditAddrMemoryK->text())
+                    .arg(ui->radioButtonWord->isChecked() ? "AX" : "AL") + '\n';
+        }
+
+    if (ui->comboBoxAddrR->currentIndex() == 0)
+        asmText += QString("MOV %1,%2H").arg(ui->comboBoxRegistersR->currentText())
+                .arg(ui->lineEditValueR->text()) + '\n';
+    else
+        if (ui->comboBoxAddrR->currentIndex() == 1)
+        {
+            asmText += QString("MOV %1,%2H").arg(ui->radioButtonWord->isChecked() ? "AX" : "AL")
+                    .arg(ui->lineEditValueR->text()) + '\n';
+            asmText += QString("MOV [%1H],%2").arg(ui->lineEditAddrMemoryR->text())
+                    .arg(ui->radioButtonWord->isChecked() ? "AX" : "AL") + '\n';
+        }
+
+    if (ui->comboBoxAddrN->currentIndex() == 0)
+        asmText += QString("MOV %1,%2H").arg(ui->comboBoxRegistersN->currentText())
+                .arg(ui->lineEditValueN->text()) + '\n';
+    else
+        if (ui->comboBoxAddrN->currentIndex() == 1)
+        {
+            asmText += QString("MOV %1,%2H").arg(ui->radioButtonWord->isChecked() ? "AX" : "AL")
+                    .arg(ui->lineEditValueN->text()) + '\n';
+            asmText += QString("MOV [%1H],%2").arg(ui->lineEditAddrMemoryN->text())
+                    .arg(ui->radioButtonWord->isChecked() ? "AX" : "AL") + '\n';
+        }
+
+    if (ui->comboBoxAddrM->currentIndex() == 0)
+        asmText += QString("MOV %1,%2H").arg(ui->comboBoxRegistersK->currentText())
+                .arg("0000") + '\n';
+    else
+        if (ui->comboBoxAddrM->currentIndex() == 1)
+        {
+            asmText += QString("MOV %1,%2H").arg(ui->radioButtonWord->isChecked() ? "AX" : "AL")
+                    .arg("0000") + '\n';
+            asmText += QString("MOV [%1H],%2").arg(ui->lineEditAddrMemoryM->text())
+                    .arg(ui->radioButtonWord->isChecked() ? "AX" : "AL") + '\n';
+        }
+    asmText += '\n';
 }
 
 void MainWindow::on_radioButtonWord_clicked()
 {
+    ui->comboBoxRegistersK->clear();
     ui->comboBoxRegistersK->addItem("AX");
     ui->comboBoxRegistersK->addItem("CX");
     ui->comboBoxRegistersK->addItem("DX");
@@ -139,6 +199,7 @@ void MainWindow::on_radioButtonWord_clicked()
 
 void MainWindow::on_radioButtonByte_clicked()
 {
+    ui->comboBoxRegistersK->clear();
     ui->comboBoxRegistersK->addItem("AL");
     ui->comboBoxRegistersK->addItem("CL");
     ui->comboBoxRegistersK->addItem("DL");
