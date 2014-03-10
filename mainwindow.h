@@ -9,8 +9,9 @@
 //#include <QDesktopServices>
 
 #include "AsmToBin.h"
-#include "BinToHex.h"
-#include <QTime>
+//#include "BinToHex.h"
+//#include <QTime>
+#include <QSpacerItem>
 
 namespace Ui {
 class MainWindow;

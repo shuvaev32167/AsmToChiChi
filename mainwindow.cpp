@@ -46,6 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->lineEdit->setText("M=K+N-R+120");
 
+    ui->groupBoxKonvertAsm->hide();
+    ui->verticalLayout->insertStretch(2);
 
 //    this->installEventFilter(this);
 
@@ -96,8 +98,6 @@ void MainWindow::on_pushButtonStart_clicked()
     }
     text = convertBinToHex(text);
     ui->textEditHex->setPlainText(text);
-    //    QString *string = new QString(ui->textEdit->toPlainText());
-    //    qDebug() << *string;
 }
 
 QString MainWindow::convertBinToHex(QString binText)
@@ -178,6 +178,8 @@ void MainWindow::on_pushButtonToAsm_clicked()
                     .arg(ui->radioButtonWord->isChecked() ? "AX" : "AL") + '\n';
         }
     asmText += '\n';
+
+    ui->textEditAsm->setPlainText(asmText);
 }
 
 void MainWindow::on_radioButtonWord_clicked()

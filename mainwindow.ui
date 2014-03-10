@@ -84,308 +84,332 @@
        </layout>
       </item>
       <item>
-       <layout class="QFormLayout" name="formLayoutCondition">
-        <property name="fieldGrowthPolicy">
-         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+       <widget class="QGroupBox" name="groupBoxKonvertAsm">
+        <property name="title">
+         <string>Test</string>
         </property>
-        <property name="leftMargin">
-         <number>1</number>
-        </property>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Само выражение</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="labelHeaderM">
-          <property name="text">
-           <string>M</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <layout class="QGridLayout" name="gridLayoutParametersM">
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="lineEditValueM">
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="labelAddrMemoryOrRegistersM">
-            <property name="text">
-             <string>Адрес памяти</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelValueM">
-            <property name="text">
-             <string>Значение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="labelAddrM">
-            <property name="text">
-             <string>Расположение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxAddrM"/>
-          </item>
-          <item row="1" column="3">
-           <layout class="QHBoxLayout" name="horizontalLayoutAddrM">
-            <item>
-             <widget class="QComboBox" name="comboBoxRegistersM">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="editable">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEditAddrMemoryM">
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="labelHeaderK">
-          <property name="text">
-           <string>K</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <layout class="QGridLayout" name="gridLayoutParametersK">
-          <item row="0" column="1">
-           <widget class="QLabel" name="labelAddrK">
-            <property name="text">
-             <string>Расположение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxAddrK"/>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="labelAddrMemoryOrRegistersK">
-            <property name="text">
-             <string>Адрес памяти</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLineEdit" name="lineEditValueK">
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelValueK">
-            <property name="text">
-             <string>Значение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <layout class="QHBoxLayout" name="horizontalLayoutAddrK">
-            <item>
-             <widget class="QComboBox" name="comboBoxRegistersK">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEditAddrMemoryK">
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="labelHeaderR">
-          <property name="text">
-           <string>R</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <layout class="QGridLayout" name="gridLayoutParametersR">
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxAddrR"/>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="labelAddrR">
-            <property name="text">
-             <string>Расположение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="lineEditValueR">
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="labelAddrMemoryOrRegistersR">
-            <property name="text">
-             <string>Адрес памяти</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelValueR">
-            <property name="text">
-             <string>Значение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <layout class="QHBoxLayout" name="horizontalLayoutAddrR">
-            <item>
-             <widget class="QComboBox" name="comboBoxRegistersR">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEditAddrMemoryR">
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="labelHeaderN">
-          <property name="text">
-           <string>N</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <layout class="QGridLayout" name="gridLayoutParametersN">
-          <item row="0" column="3">
-           <widget class="QLabel" name="labelAddrMemoryOrRegistersN">
-            <property name="text">
-             <string>Адрес памяти</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="lineEditValueN">
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxAddrN"/>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelValueN">
-            <property name="text">
-             <string>Значение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="labelAddrN">
-            <property name="text">
-             <string>Расположение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <layout class="QHBoxLayout" name="horizontalLayoutAddrN">
-            <item>
-             <widget class="QComboBox" name="comboBoxRegistersN">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEditAddrMemoryN">
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="pushButtonToAsm">
-          <property name="text">
-           <string>Конвертировать в Asm</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <layout class="QFormLayout" name="formLayoutCondition">
+           <property name="fieldGrowthPolicy">
+            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+           </property>
+           <property name="leftMargin">
+            <number>1</number>
+           </property>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelHeaderM">
+             <property name="text">
+              <string>M</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QGridLayout" name="gridLayoutParametersM">
+             <item row="1" column="0">
+              <widget class="QLineEdit" name="lineEditValueM">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="labelAddrMemoryOrRegistersM">
+               <property name="text">
+                <string>Адрес памяти</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelValueM">
+               <property name="text">
+                <string>Значение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="labelAddrM">
+               <property name="text">
+                <string>Расположение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAddrM"/>
+             </item>
+             <item row="1" column="3">
+              <layout class="QHBoxLayout" name="horizontalLayoutAddrM">
+               <item>
+                <widget class="QComboBox" name="comboBoxRegistersM">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditAddrMemoryM">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelHeaderK">
+             <property name="text">
+              <string>K</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <layout class="QGridLayout" name="gridLayoutParametersK">
+             <item row="0" column="1">
+              <widget class="QLabel" name="labelAddrK">
+               <property name="text">
+                <string>Расположение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="comboBoxAddrK"/>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="labelAddrMemoryOrRegistersK">
+               <property name="text">
+                <string>Адрес памяти</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLineEdit" name="lineEditValueK">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelValueK">
+               <property name="text">
+                <string>Значение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <layout class="QHBoxLayout" name="horizontalLayoutAddrK">
+               <item>
+                <widget class="QComboBox" name="comboBoxRegistersK">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditAddrMemoryK">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="labelHeaderR">
+             <property name="text">
+              <string>R</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QGridLayout" name="gridLayoutParametersR">
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAddrR"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="labelAddrR">
+               <property name="text">
+                <string>Расположение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLineEdit" name="lineEditValueR">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="labelAddrMemoryOrRegistersR">
+               <property name="text">
+                <string>Адрес памяти</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelValueR">
+               <property name="text">
+                <string>Значение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <layout class="QHBoxLayout" name="horizontalLayoutAddrR">
+               <item>
+                <widget class="QComboBox" name="comboBoxRegistersR">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditAddrMemoryR">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="labelHeaderN">
+             <property name="text">
+              <string>N</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <layout class="QGridLayout" name="gridLayoutParametersN">
+             <item row="0" column="3">
+              <widget class="QLabel" name="labelAddrMemoryOrRegistersN">
+               <property name="text">
+                <string>Адрес памяти</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLineEdit" name="lineEditValueN">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAddrN"/>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelValueN">
+               <property name="text">
+                <string>Значение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="labelAddrN">
+               <property name="text">
+                <string>Расположение</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <layout class="QHBoxLayout" name="horizontalLayoutAddrN">
+               <item>
+                <widget class="QComboBox" name="comboBoxRegistersN">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEditAddrMemoryN">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QPushButton" name="pushButtonToAsm">
+             <property name="text">
+              <string>Конвертировать в Asm</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Само выражение</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
       </item>
      </layout>
     </item>
