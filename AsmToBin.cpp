@@ -67,7 +67,7 @@ void AsmToBin::asmToBin()
     {
         qslBufSpace.clear();
         qslBufZPT.clear();
-        qslBufSpace = qslAsmCommand[i].split(' ');
+        qslBufSpace = qslAsmCommand[i].simplified().split(' ');
         if (qslBufSpace.count() == 2)
             qslBufZPT = qslBufSpace.last().split(',');
         if (qslBufZPT.empty())
@@ -515,18 +515,143 @@ void AsmToBin::sub(QStringList qslBufZPT)
     else
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
             throw QString("Не верное число параметров у SUB");
-    binText += "\n0010101";
-    if (type == Type::word)
-        binText += "111";
-    else
-        if (type == Type::byte)
-            binText += "011";
     if (registers.contains(qslBufZPT.first()) && registers.contains(qslBufZPT.last()))
     {
+        binText += "\n0010101";
+        if (type == Type::word)
+            binText += "111";
+        else
+            if (type == Type::byte)
+                binText += "011";
         binText+=registers[qslBufZPT.first()] + registers[qslBufZPT.last()];
     }
     else
-        throw QString("Данные параметры у SUB не обрабатываются (пока?)");
+        if ((qslBufZPT.first() == "AX" || qslBufZPT.first() == "ax" ||
+                qslBufZPT.first() == "AL" || qslBufZPT.first() == "al") &&
+                qslBufZPT.last().size() == 5)
+        {
+            binText += "\n0010110";
+            if (type == Type::word)
+                binText += "1";
+            else
+                if (type == Type::byte)
+                    binText += "0";
+            char size = qslBufZPT.last().count()-1;
+            QString nakop="";
+            QChar buf;
+            for (char i = 1; i < size; ++i)
+            {
+                buf = qslBufZPT.first()[i];
+                if (buf != 'H' || buf !='h')
+                    nakop += buf;
+                else
+                    if (i != size-1)
+                        throw QString("Не верно казан адресс памяти у MOVE");
+            }
+            size = nakop.size();
+            for (char i = 2; i < size; ++i)
+            {
+                if (nakop[i] == '0')
+                    binText+="0000";
+                else
+                    if (nakop[i] == '1')
+                        binText+="0001";
+                    else
+                        if (nakop[i]=='2')
+                            binText+="0010";
+                        else
+                            if (nakop[i] == '3')
+                                binText+="0011";
+                            else
+                                if (nakop[i]=='4')
+                                    binText+="0100";
+                                else
+                                    if (nakop[i] == '5')
+                                        binText+="0101";
+                                    else
+                                        if (nakop[i]=='6')
+                                            binText+="0110";
+                                        else
+                                            if (nakop[i] == '7')
+                                                binText+="0111";
+                                            else
+                                                if (nakop[i]=='8')
+                                                    binText+="1000";
+                                                else
+                                                    if (nakop[i] == '9')
+                                                        binText+="1001";
+                                                    else
+                                                        if (nakop[i]=='A')
+                                                            binText+="1010";
+                                                        else
+                                                            if (nakop[i] == 'B')
+                                                                binText+="1011";
+                                                            else
+                                                                if (nakop[i]=='C')
+                                                                    binText+="1100";
+                                                                else
+                                                                    if (nakop[i] == 'D')
+                                                                        binText+="1101";
+                                                                    else
+                                                                        if (nakop[i]=='E')
+                                                                            binText+="1110";
+                                                                        else
+                                                                            if (nakop[i] == 'F')
+                                                                                binText+="1111";
+            }
+            for (char i = 0; i < 2; ++i)
+            {
+                if (nakop[i] == '0')
+                    binText+="0000";
+                else
+                    if (nakop[i] == '1')
+                        binText+="0001";
+                    else
+                        if (nakop[i]=='2')
+                            binText+="0010";
+                        else
+                            if (nakop[i] == '3')
+                                binText+="0011";
+                            else
+                                if (nakop[i]=='4')
+                                    binText+="0100";
+                                else
+                                    if (nakop[i] == '5')
+                                        binText+="0101";
+                                    else
+                                        if (nakop[i]=='6')
+                                            binText+="0110";
+                                        else
+                                            if (nakop[i] == '7')
+                                                binText+="0111";
+                                            else
+                                                if (nakop[i]=='8')
+                                                    binText+="1000";
+                                                else
+                                                    if (nakop[i] == '9')
+                                                        binText+="1001";
+                                                    else
+                                                        if (nakop[i]=='A')
+                                                            binText+="1010";
+                                                        else
+                                                            if (nakop[i] == 'B')
+                                                                binText+="1011";
+                                                            else
+                                                                if (nakop[i]=='C')
+                                                                    binText+="1100";
+                                                                else
+                                                                    if (nakop[i] == 'D')
+                                                                        binText+="1101";
+                                                                    else
+                                                                        if (nakop[i]=='E')
+                                                                            binText+="1110";
+                                                                        else
+                                                                            if (nakop[i] == 'F')
+                                                                                binText+="1111";
+            }
+        }
+        else
+            throw QString("Данные параметры у SUB не обрабатываются (пока?)");
 }
 
 void AsmToBin::add(QStringList qslBufZPT)
@@ -554,6 +679,8 @@ void AsmToBin::add(QStringList qslBufZPT)
     else
         if (qslBufZPT.last().size() == 5)
         {
+            if (qslBufZPT.first() != "AX" || qslBufZPT.first() != "ax")
+                throw QString("Данные параметры у add не обрабатываются (пока?)");
             binText+="\n0000010";
             if (type == Type::word)
                 binText+="1";
