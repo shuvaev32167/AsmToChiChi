@@ -30,6 +30,8 @@ private:
     void move(QStringList qslBufZPT);
     void sub(QStringList qslBufZPT);
     void add(QStringList qslBufZPT);
+
+    void convertHexToBin(const QString &input, const bool& chislo);
 };
 
 #endif // ASMTOBIN_H

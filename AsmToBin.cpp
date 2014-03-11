@@ -113,7 +113,7 @@ void AsmToBin::asmToBin()
 
 void AsmToBin::move(QStringList qslBufZPT)
 {
-    if (qslBufZPT.empty()|| qslBufZPT.first() == "")
+    if (qslBufZPT.empty())
         throw QString("MOV без данных");
     else
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
@@ -133,113 +133,13 @@ void AsmToBin::move(QStringList qslBufZPT)
         for (char i = 1; i < size; ++i)
         {
             buf = qslBufZPT.last()[i];
-            if (buf != 'H' || buf !='h')
+            if (buf != 'H' && buf !='h')
                 nakop += buf;
             else
                 if (i != size-1)
                     throw QString("Не верно казан адресс памяти у MOVE");
         }
-        size = nakop.size();
-        for (char i = 2; i < size; ++i)
-        {
-            if (nakop[i] == '0')
-                binText+="0000";
-            else
-                if (nakop[i] == '1')
-                    binText+="0001";
-                else
-                    if (nakop[i]=='2')
-                        binText+="0010";
-                    else
-                        if (nakop[i] == '3')
-                            binText+="0011";
-                        else
-                            if (nakop[i]=='4')
-                                binText+="0100";
-                            else
-                                if (nakop[i] == '5')
-                                    binText+="0101";
-                                else
-                                    if (nakop[i]=='6')
-                                        binText+="0110";
-                                    else
-                                        if (nakop[i] == '7')
-                                            binText+="0111";
-                                        else
-                                            if (nakop[i]=='8')
-                                                binText+="1000";
-                                            else
-                                                if (nakop[i] == '9')
-                                                    binText+="1001";
-                                                else
-                                                    if (nakop[i]=='A')
-                                                        binText+="1010";
-                                                    else
-                                                        if (nakop[i] == 'B')
-                                                            binText+="1011";
-                                                        else
-                                                            if (nakop[i]=='C')
-                                                                binText+="1100";
-                                                            else
-                                                                if (nakop[i] == 'D')
-                                                                    binText+="1101";
-                                                                else
-                                                                    if (nakop[i]=='E')
-                                                                        binText+="1110";
-                                                                    else
-                                                                        if (nakop[i] == 'F')
-                                                                            binText+="1111";
-        }
-        for (char i = 0; i < 2; ++i)
-        {
-            if (nakop[i] == '0')
-                binText+="0000";
-            else
-                if (nakop[i] == '1')
-                    binText+="0001";
-                else
-                    if (nakop[i]=='2')
-                        binText+="0010";
-                    else
-                        if (nakop[i] == '3')
-                            binText+="0011";
-                        else
-                            if (nakop[i]=='4')
-                                binText+="0100";
-                            else
-                                if (nakop[i] == '5')
-                                    binText+="0101";
-                                else
-                                    if (nakop[i]=='6')
-                                        binText+="0110";
-                                    else
-                                        if (nakop[i] == '7')
-                                            binText+="0111";
-                                        else
-                                            if (nakop[i]=='8')
-                                                binText+="1000";
-                                            else
-                                                if (nakop[i] == '9')
-                                                    binText+="1001";
-                                                else
-                                                    if (nakop[i]=='A')
-                                                        binText+="1010";
-                                                    else
-                                                        if (nakop[i] == 'B')
-                                                            binText+="1011";
-                                                        else
-                                                            if (nakop[i]=='C')
-                                                                binText+="1100";
-                                                            else
-                                                                if (nakop[i] == 'D')
-                                                                    binText+="1101";
-                                                                else
-                                                                    if (nakop[i]=='E')
-                                                                        binText+="1110";
-                                                                    else
-                                                                        if (nakop[i] == 'F')
-                                                                            binText+="1111";
-        }
+        convertHexToBin(nakop, 0);
         //                binText += QString::number(nakop.toInt(0,16),2);
     }
     else
@@ -259,113 +159,13 @@ void AsmToBin::move(QStringList qslBufZPT)
             for (char i = 1; i < size; ++i)
             {
                 buf = qslBufZPT.first()[i];
-                if (buf != 'H' || buf !='h')
+                if (buf != 'H' && buf !='h')
                     nakop += buf;
                 else
                     if (i != size-1)
                         throw QString("Не верно казан адресс памяти у MOVE");
             }
-            size = nakop.size();
-            for (char i = 2; i < size; ++i)
-            {
-                if (nakop[i] == '0')
-                    binText+="0000";
-                else
-                    if (nakop[i] == '1')
-                        binText+="0001";
-                    else
-                        if (nakop[i]=='2')
-                            binText+="0010";
-                        else
-                            if (nakop[i] == '3')
-                                binText+="0011";
-                            else
-                                if (nakop[i]=='4')
-                                    binText+="0100";
-                                else
-                                    if (nakop[i] == '5')
-                                        binText+="0101";
-                                    else
-                                        if (nakop[i]=='6')
-                                            binText+="0110";
-                                        else
-                                            if (nakop[i] == '7')
-                                                binText+="0111";
-                                            else
-                                                if (nakop[i]=='8')
-                                                    binText+="1000";
-                                                else
-                                                    if (nakop[i] == '9')
-                                                        binText+="1001";
-                                                    else
-                                                        if (nakop[i]=='A')
-                                                            binText+="1010";
-                                                        else
-                                                            if (nakop[i] == 'B')
-                                                                binText+="1011";
-                                                            else
-                                                                if (nakop[i]=='C')
-                                                                    binText+="1100";
-                                                                else
-                                                                    if (nakop[i] == 'D')
-                                                                        binText+="1101";
-                                                                    else
-                                                                        if (nakop[i]=='E')
-                                                                            binText+="1110";
-                                                                        else
-                                                                            if (nakop[i] == 'F')
-                                                                                binText+="1111";
-            }
-            for (char i = 0; i < 2; ++i)
-            {
-                if (nakop[i] == '0')
-                    binText+="0000";
-                else
-                    if (nakop[i] == '1')
-                        binText+="0001";
-                    else
-                        if (nakop[i]=='2')
-                            binText+="0010";
-                        else
-                            if (nakop[i] == '3')
-                                binText+="0011";
-                            else
-                                if (nakop[i]=='4')
-                                    binText+="0100";
-                                else
-                                    if (nakop[i] == '5')
-                                        binText+="0101";
-                                    else
-                                        if (nakop[i]=='6')
-                                            binText+="0110";
-                                        else
-                                            if (nakop[i] == '7')
-                                                binText+="0111";
-                                            else
-                                                if (nakop[i]=='8')
-                                                    binText+="1000";
-                                                else
-                                                    if (nakop[i] == '9')
-                                                        binText+="1001";
-                                                    else
-                                                        if (nakop[i]=='A')
-                                                            binText+="1010";
-                                                        else
-                                                            if (nakop[i] == 'B')
-                                                                binText+="1011";
-                                                            else
-                                                                if (nakop[i]=='C')
-                                                                    binText+="1100";
-                                                                else
-                                                                    if (nakop[i] == 'D')
-                                                                        binText+="1101";
-                                                                    else
-                                                                        if (nakop[i]=='E')
-                                                                            binText+="1110";
-                                                                        else
-                                                                            if (nakop[i] == 'F')
-                                                                                binText+="1111";
-            }
+            convertHexToBin(nakop, 0);
             //                binText += QString::number(nakop.toInt(0,16),2);
         }
         else
@@ -395,113 +195,13 @@ void AsmToBin::move(QStringList qslBufZPT)
                     for (char i = 1; i < size; ++i)
                     {
                         buf = qslBufZPT.first()[i];
-                        if (buf != 'H' || buf !='h')
+                        if (buf != 'H' && buf !='h')
                             nakop += buf;
                         else
                             if (i != size-1)
                                 throw QString("Не верно указан адресс памяти у MOVE");
                     }
-                    size = nakop.size();
-                    for (char i = 2; i < size; ++i)
-                    {
-                        if (nakop[i] == '0')
-                            binText+="0000";
-                        else
-                            if (nakop[i] == '1')
-                                binText+="0001";
-                            else
-                                if (nakop[i]=='2')
-                                    binText+="0010";
-                                else
-                                    if (nakop[i] == '3')
-                                        binText+="0011";
-                                    else
-                                        if (nakop[i]=='4')
-                                            binText+="0100";
-                                        else
-                                            if (nakop[i] == '5')
-                                                binText+="0101";
-                                            else
-                                                if (nakop[i]=='6')
-                                                    binText+="0110";
-                                                else
-                                                    if (nakop[i] == '7')
-                                                        binText+="0111";
-                                                    else
-                                                        if (nakop[i]=='8')
-                                                            binText+="1000";
-                                                        else
-                                                            if (nakop[i] == '9')
-                                                                binText+="1001";
-                                                            else
-                                                                if (nakop[i]=='A')
-                                                                    binText+="1010";
-                                                                else
-                                                                    if (nakop[i] == 'B')
-                                                                        binText+="1011";
-                                                                    else
-                                                                        if (nakop[i]=='C')
-                                                                            binText+="1100";
-                                                                        else
-                                                                            if (nakop[i] == 'D')
-                                                                                binText+="1101";
-                                                                            else
-                                                                                if (nakop[i]=='E')
-                                                                                    binText+="1110";
-                                                                                else
-                                                                                    if (nakop[i] == 'F')
-                                                                                        binText+="1111";
-                    }
-                    for (char i = 0; i < 2; ++i)
-                    {
-                        if (nakop[i] == '0')
-                            binText+="0000";
-                        else
-                            if (nakop[i] == '1')
-                                binText+="0001";
-                            else
-                                if (nakop[i]=='2')
-                                    binText+="0010";
-                                else
-                                    if (nakop[i] == '3')
-                                        binText+="0011";
-                                    else
-                                        if (nakop[i]=='4')
-                                            binText+="0100";
-                                        else
-                                            if (nakop[i] == '5')
-                                                binText+="0101";
-                                            else
-                                                if (nakop[i]=='6')
-                                                    binText+="0110";
-                                                else
-                                                    if (nakop[i] == '7')
-                                                        binText+="0111";
-                                                    else
-                                                        if (nakop[i]=='8')
-                                                            binText+="1000";
-                                                        else
-                                                            if (nakop[i] == '9')
-                                                                binText+="1001";
-                                                            else
-                                                                if (nakop[i]=='A')
-                                                                    binText+="1010";
-                                                                else
-                                                                    if (nakop[i] == 'B')
-                                                                        binText+="1011";
-                                                                    else
-                                                                        if (nakop[i]=='C')
-                                                                            binText+="1100";
-                                                                        else
-                                                                            if (nakop[i] == 'D')
-                                                                                binText+="1101";
-                                                                            else
-                                                                                if (nakop[i]=='E')
-                                                                                    binText+="1110";
-                                                                                else
-                                                                                    if (nakop[i] == 'F')
-                                                                                        binText+="1111";
-                    }
+                    convertHexToBin(nakop, 1);
                 }
                 else
                     throw QString("Данные параметры у MOV не обрабатываются (пока?)");
@@ -510,7 +210,7 @@ void AsmToBin::move(QStringList qslBufZPT)
 
 void AsmToBin::sub(QStringList qslBufZPT)
 {
-    if (qslBufZPT.empty()|| qslBufZPT.first() == "")
+    if (qslBufZPT.empty())
         throw QString("SUB без данных");
     else
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
@@ -539,116 +239,16 @@ void AsmToBin::sub(QStringList qslBufZPT)
             char size = qslBufZPT.last().count()-1;
             QString nakop="";
             QChar buf;
-            for (char i = 1; i < size; ++i)
+            for (char i = 0; i < size; ++i)
             {
-                buf = qslBufZPT.first()[i];
-                if (buf != 'H' || buf !='h')
+                buf = qslBufZPT.last()[i];
+                if (buf != 'H' && buf !='h')
                     nakop += buf;
                 else
                     if (i != size-1)
                         throw QString("Не верно казан адресс памяти у MOVE");
             }
-            size = nakop.size();
-            for (char i = 2; i < size; ++i)
-            {
-                if (nakop[i] == '0')
-                    binText+="0000";
-                else
-                    if (nakop[i] == '1')
-                        binText+="0001";
-                    else
-                        if (nakop[i]=='2')
-                            binText+="0010";
-                        else
-                            if (nakop[i] == '3')
-                                binText+="0011";
-                            else
-                                if (nakop[i]=='4')
-                                    binText+="0100";
-                                else
-                                    if (nakop[i] == '5')
-                                        binText+="0101";
-                                    else
-                                        if (nakop[i]=='6')
-                                            binText+="0110";
-                                        else
-                                            if (nakop[i] == '7')
-                                                binText+="0111";
-                                            else
-                                                if (nakop[i]=='8')
-                                                    binText+="1000";
-                                                else
-                                                    if (nakop[i] == '9')
-                                                        binText+="1001";
-                                                    else
-                                                        if (nakop[i]=='A')
-                                                            binText+="1010";
-                                                        else
-                                                            if (nakop[i] == 'B')
-                                                                binText+="1011";
-                                                            else
-                                                                if (nakop[i]=='C')
-                                                                    binText+="1100";
-                                                                else
-                                                                    if (nakop[i] == 'D')
-                                                                        binText+="1101";
-                                                                    else
-                                                                        if (nakop[i]=='E')
-                                                                            binText+="1110";
-                                                                        else
-                                                                            if (nakop[i] == 'F')
-                                                                                binText+="1111";
-            }
-            for (char i = 0; i < 2; ++i)
-            {
-                if (nakop[i] == '0')
-                    binText+="0000";
-                else
-                    if (nakop[i] == '1')
-                        binText+="0001";
-                    else
-                        if (nakop[i]=='2')
-                            binText+="0010";
-                        else
-                            if (nakop[i] == '3')
-                                binText+="0011";
-                            else
-                                if (nakop[i]=='4')
-                                    binText+="0100";
-                                else
-                                    if (nakop[i] == '5')
-                                        binText+="0101";
-                                    else
-                                        if (nakop[i]=='6')
-                                            binText+="0110";
-                                        else
-                                            if (nakop[i] == '7')
-                                                binText+="0111";
-                                            else
-                                                if (nakop[i]=='8')
-                                                    binText+="1000";
-                                                else
-                                                    if (nakop[i] == '9')
-                                                        binText+="1001";
-                                                    else
-                                                        if (nakop[i]=='A')
-                                                            binText+="1010";
-                                                        else
-                                                            if (nakop[i] == 'B')
-                                                                binText+="1011";
-                                                            else
-                                                                if (nakop[i]=='C')
-                                                                    binText+="1100";
-                                                                else
-                                                                    if (nakop[i] == 'D')
-                                                                        binText+="1101";
-                                                                    else
-                                                                        if (nakop[i]=='E')
-                                                                            binText+="1110";
-                                                                        else
-                                                                            if (nakop[i] == 'F')
-                                                                                binText+="1111";
-            }
+            convertHexToBin(nakop, 1);
         }
         else
             throw QString("Данные параметры у SUB не обрабатываются (пока?)");
@@ -656,7 +256,7 @@ void AsmToBin::sub(QStringList qslBufZPT)
 
 void AsmToBin::add(QStringList qslBufZPT)
 {
-    if (qslBufZPT.empty()|| qslBufZPT.first() == "")
+    if (qslBufZPT.empty())
         throw QString("ADD без данных");
     else
         if (qslBufZPT.count() != 2 || qslBufZPT.last() == "")
@@ -695,117 +295,122 @@ void AsmToBin::add(QStringList qslBufZPT)
                 for (char i = 0; i < size; ++i)
                 {
                     buf = qslBufZPT.last()[i];
-                    if (buf != 'H' || buf !='h')
+                    if (buf != 'H' && buf !='h')
                         nakop += buf;
                     else
                         if (i != size-1)
                             throw QString("Не верно казан адресс памяти у MOVE");
                 }
-                size = nakop.size();
-                for (char i = 2; i < size; ++i)
-                {
-                    if (nakop[i] == '0')
-                        binText+="0000";
-                    else
-                        if (nakop[i] == '1')
-                            binText+="0001";
-                        else
-                            if (nakop[i]=='2')
-                                binText+="0010";
-                            else
-                                if (nakop[i] == '3')
-                                    binText+="0011";
-                                else
-                                    if (nakop[i]=='4')
-                                        binText+="0100";
-                                    else
-                                        if (nakop[i] == '5')
-                                            binText+="0101";
-                                        else
-                                            if (nakop[i]=='6')
-                                                binText+="0110";
-                                            else
-                                                if (nakop[i] == '7')
-                                                    binText+="0111";
-                                                else
-                                                    if (nakop[i]=='8')
-                                                        binText+="1000";
-                                                    else
-                                                        if (nakop[i] == '9')
-                                                            binText+="1001";
-                                                        else
-                                                            if (nakop[i]=='A')
-                                                                binText+="1010";
-                                                            else
-                                                                if (nakop[i] == 'B')
-                                                                    binText+="1011";
-                                                                else
-                                                                    if (nakop[i]=='C')
-                                                                        binText+="1100";
-                                                                    else
-                                                                        if (nakop[i] == 'D')
-                                                                            binText+="1101";
-                                                                        else
-                                                                            if (nakop[i]=='E')
-                                                                                binText+="1110";
-                                                                            else
-                                                                                if (nakop[i] == 'F')
-                                                                                    binText+="1111";
-                }
-                for (char i = 0; i < 2; ++i)
-                {
-                    if (nakop[i] == '0')
-                        binText+="0000";
-                    else
-                        if (nakop[i] == '1')
-                            binText+="0001";
-                        else
-                            if (nakop[i]=='2')
-                                binText+="0010";
-                            else
-                                if (nakop[i] == '3')
-                                    binText+="0011";
-                                else
-                                    if (nakop[i]=='4')
-                                        binText+="0100";
-                                    else
-                                        if (nakop[i] == '5')
-                                            binText+="0101";
-                                        else
-                                            if (nakop[i]=='6')
-                                                binText+="0110";
-                                            else
-                                                if (nakop[i] == '7')
-                                                    binText+="0111";
-                                                else
-                                                    if (nakop[i]=='8')
-                                                        binText+="1000";
-                                                    else
-                                                        if (nakop[i] == '9')
-                                                            binText+="1001";
-                                                        else
-                                                            if (nakop[i]=='A')
-                                                                binText+="1010";
-                                                            else
-                                                                if (nakop[i] == 'B')
-                                                                    binText+="1011";
-                                                                else
-                                                                    if (nakop[i]=='C')
-                                                                        binText+="1100";
-                                                                    else
-                                                                        if (nakop[i] == 'D')
-                                                                            binText+="1101";
-                                                                        else
-                                                                            if (nakop[i]=='E')
-                                                                                binText+="1110";
-                                                                            else
-                                                                                if (nakop[i] == 'F')
-                                                                                    binText+="1111";
-                }
+                convertHexToBin(nakop, 1);
             }
             else
                 throw QString("Данные параметры у add не обрабатываются (пока?)");
         }
         else
             throw QString("Данные параметры у add не обрабатываются (пока?)");
+}
+
+void AsmToBin::convertHexToBin(const QString &input, const bool &chislo)
+{
+    if (chislo && type == Type::word)
+        for (char i = 2, size = input.size(); i < size; ++i)
+        {
+            if (input[i] == '0')
+                binText+="0000";
+            else
+                if (input[i] == '1')
+                    binText+="0001";
+                else
+                    if (input[i]=='2')
+                        binText+="0010";
+                    else
+                        if (input[i] == '3')
+                            binText+="0011";
+                        else
+                            if (input[i]=='4')
+                                binText+="0100";
+                            else
+                                if (input[i] == '5')
+                                    binText+="0101";
+                                else
+                                    if (input[i]=='6')
+                                        binText+="0110";
+                                    else
+                                        if (input[i] == '7')
+                                            binText+="0111";
+                                        else
+                                            if (input[i]=='8')
+                                                binText+="1000";
+                                            else
+                                                if (input[i] == '9')
+                                                    binText+="1001";
+                                                else
+                                                    if (input[i]=='A')
+                                                        binText+="1010";
+                                                    else
+                                                        if (input[i] == 'B')
+                                                            binText+="1011";
+                                                        else
+                                                            if (input[i]=='C')
+                                                                binText+="1100";
+                                                            else
+                                                                if (input[i] == 'D')
+                                                                    binText+="1101";
+                                                                else
+                                                                    if (input[i]=='E')
+                                                                        binText+="1110";
+                                                                    else
+                                                                        if (input[i] == 'F')
+                                                                            binText+="1111";
+        }
+    for (char i = 0; i < 2; ++i)
+    {
+        if (input[i] == '0')
+            binText+="0000";
+        else
+            if (input[i] == '1')
+                binText+="0001";
+            else
+                if (input[i]=='2')
+                    binText+="0010";
+                else
+                    if (input[i] == '3')
+                        binText+="0011";
+                    else
+                        if (input[i]=='4')
+                            binText+="0100";
+                        else
+                            if (input[i] == '5')
+                                binText+="0101";
+                            else
+                                if (input[i]=='6')
+                                    binText+="0110";
+                                else
+                                    if (input[i] == '7')
+                                        binText+="0111";
+                                    else
+                                        if (input[i]=='8')
+                                            binText+="1000";
+                                        else
+                                            if (input[i] == '9')
+                                                binText+="1001";
+                                            else
+                                                if (input[i]=='A')
+                                                    binText+="1010";
+                                                else
+                                                    if (input[i] == 'B')
+                                                        binText+="1011";
+                                                    else
+                                                        if (input[i]=='C')
+                                                            binText+="1100";
+                                                        else
+                                                            if (input[i] == 'D')
+                                                                binText+="1101";
+                                                            else
+                                                                if (input[i]=='E')
+                                                                    binText+="1110";
+                                                                else
+                                                                    if (input[i] == 'F')
+                                                                        binText+="1111";
+    }
 }
