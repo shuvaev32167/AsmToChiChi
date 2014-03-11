@@ -312,58 +312,8 @@ void AsmToBin::add(QStringList qslBufZPT)
 
 void AsmToBin::convertHexToBin(const QString &input, const bool &chislo)
 {
-    if (chislo && type == Type::word)
-        for (char i = 2, size = input.size(); i < size; ++i)
-        {
-            if (input[i] == '0')
-                binText+="0000";
-            else
-                if (input[i] == '1')
-                    binText+="0001";
-                else
-                    if (input[i]=='2')
-                        binText+="0010";
-                    else
-                        if (input[i] == '3')
-                            binText+="0011";
-                        else
-                            if (input[i]=='4')
-                                binText+="0100";
-                            else
-                                if (input[i] == '5')
-                                    binText+="0101";
-                                else
-                                    if (input[i]=='6')
-                                        binText+="0110";
-                                    else
-                                        if (input[i] == '7')
-                                            binText+="0111";
-                                        else
-                                            if (input[i]=='8')
-                                                binText+="1000";
-                                            else
-                                                if (input[i] == '9')
-                                                    binText+="1001";
-                                                else
-                                                    if (input[i]=='A')
-                                                        binText+="1010";
-                                                    else
-                                                        if (input[i] == 'B')
-                                                            binText+="1011";
-                                                        else
-                                                            if (input[i]=='C')
-                                                                binText+="1100";
-                                                            else
-                                                                if (input[i] == 'D')
-                                                                    binText+="1101";
-                                                                else
-                                                                    if (input[i]=='E')
-                                                                        binText+="1110";
-                                                                    else
-                                                                        if (input[i] == 'F')
-                                                                            binText+="1111";
-        }
-    for (char i = 0; i < 2; ++i)
+    size = input.size();
+    for (char i = 2; i < size; ++i)
     {
         if (input[i] == '0')
             binText+="0000";
@@ -413,4 +363,55 @@ void AsmToBin::convertHexToBin(const QString &input, const bool &chislo)
                                                                     if (input[i] == 'F')
                                                                         binText+="1111";
     }
+    if (!chislo || type == Type::word || size <= 2)
+        for (char i = 0; i < 2; ++i)
+        {
+            if (input[i] == '0')
+                binText+="0000";
+            else
+                if (input[i] == '1')
+                    binText+="0001";
+                else
+                    if (input[i]=='2')
+                        binText+="0010";
+                    else
+                        if (input[i] == '3')
+                            binText+="0011";
+                        else
+                            if (input[i]=='4')
+                                binText+="0100";
+                            else
+                                if (input[i] == '5')
+                                    binText+="0101";
+                                else
+                                    if (input[i]=='6')
+                                        binText+="0110";
+                                    else
+                                        if (input[i] == '7')
+                                            binText+="0111";
+                                        else
+                                            if (input[i]=='8')
+                                                binText+="1000";
+                                            else
+                                                if (input[i] == '9')
+                                                    binText+="1001";
+                                                else
+                                                    if (input[i]=='A')
+                                                        binText+="1010";
+                                                    else
+                                                        if (input[i] == 'B')
+                                                            binText+="1011";
+                                                        else
+                                                            if (input[i]=='C')
+                                                                binText+="1100";
+                                                            else
+                                                                if (input[i] == 'D')
+                                                                    binText+="1101";
+                                                                else
+                                                                    if (input[i]=='E')
+                                                                        binText+="1110";
+                                                                    else
+                                                                        if (input[i] == 'F')
+                                                                            binText+="1111";
+        }
 }
