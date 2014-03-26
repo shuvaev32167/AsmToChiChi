@@ -95,7 +95,14 @@ void MainWindow::on_pushButtonStart_clicked()
     catch (QString str)
     {
         QMessageBox::warning(this, "Error", str);
+        return;
     }
+    catch (ErrorAsm *errAsm)
+    {
+        QMessageBox::warning(this, "Error", errAsm->str + "\nВ " + QString::number(errAsm->row + 1) + "-й строке");
+        return;
+    }
+
     text = convertBinToHex(text);
     ui->textEditHex->setPlainText(text);
 }

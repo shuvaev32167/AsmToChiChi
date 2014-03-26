@@ -11,7 +11,9 @@
 #include "AsmToBin.h"
 //#include "BinToHex.h"
 //#include <QTime>
-#include <QSpacerItem>
+//#include <QSpacerItem>
+
+#include "ErrorAsm.h"
 
 namespace Ui {
 class MainWindow;

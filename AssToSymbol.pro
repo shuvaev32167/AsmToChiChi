@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    AsmToBin.cpp
+    AsmToBin.cpp \
+    ErrorAsm.cpp
 
 HEADERS  += mainwindow.h \
-    AsmToBin.h
+    AsmToBin.h \
+    ErrorAsm.h
 
 FORMS    += mainwindow.ui
 

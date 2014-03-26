@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QMap>
 
+#include "ErrorAsm.h"
+
 namespace Type
 {
     enum {byte = 0, word = 1};
@@ -14,9 +16,9 @@ namespace Type
 class AsmToBin
 {
 public:
-    AsmToBin(QString str, char type);
+    AsmToBin(const QString &str, const char &type);
 
-    QString getBinText();
+    QString getBinText() const;
 private:
     QString asmText;
     QString binText;

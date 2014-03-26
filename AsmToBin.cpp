@@ -1,6 +1,6 @@
 #include "AsmToBin.h"
 
-AsmToBin::AsmToBin(QString str, char type)
+AsmToBin::AsmToBin(const QString &str, const char &type)
 {
     /*if (registers.contains("AX"))
         qDebug() << "yes";*/
@@ -50,13 +50,14 @@ AsmToBin::AsmToBin(QString str, char type)
     asmToBin();
 }
 
-QString AsmToBin::getBinText()
+QString AsmToBin::getBinText() const
 {
     return binText;
 }
 
 void AsmToBin::asmToBin()
 {
+    binText.clear();
     QStringList qslAsmCommand = asmText.split('\n'), qslBufSpace, qslBufZPT;
     if (qslAsmCommand.last() == "")
         qslAsmCommand.removeLast();
@@ -65,6 +66,7 @@ void AsmToBin::asmToBin()
         throw QString("Нулевой размер команд asm");
     for (int i = 0; i < size; ++i)
     {
+        try{
         qslBufSpace.clear();
         qslBufZPT.clear();
         qslBufSpace = qslAsmCommand[i].simplified().split(' ');
@@ -94,8 +96,14 @@ void AsmToBin::asmToBin()
                     continue;
                 }
                 else
-                    if (qslBufSpace.first() != "" && qslBufSpace.size() != 2)
+                    if (qslBufSpace.first() != "" || qslBufSpace.size() != 2)
                         throw QString("Данна команда не обрабатывается (пока?)");
+        }
+        catch (QString str)
+        {
+
+            throw new ErrorAsm(str, i);
+        }
     }
     binText.remove(0,1);
     //    qDebug() << binText;
@@ -312,7 +320,7 @@ void AsmToBin::add(QStringList qslBufZPT)
 
 void AsmToBin::convertHexToBin(const QString &input, const bool &chislo)
 {
-    size = input.size();
+    char size = input.size();
     for (char i = 2; i < size; ++i)
     {
         if (input[i] == '0')
